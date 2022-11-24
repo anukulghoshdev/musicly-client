@@ -1,11 +1,14 @@
 import React from 'react';
+import Loader from '../../shared/Loader/Loader';
 import Banner from '../Banner/Banner';
+import Categories from '../Categories/Categories';
 
 const Home = () => {
     return (
         <div>
-            <h3 className='text-base text-orange-700'>Home</h3>
             <Banner></Banner>
+            <Categories></Categories>
+           
         </div>
     );
 };
