@@ -9,25 +9,25 @@ module.exports = {
   daisyui: {
     themes: [
       {
-        mytheme: { // light theme
+        mytheme: {
 
-          "primary": "#ffc759",
+          "primary": "#5666ce",
 
-          "secondary": "#ed9ec2",
+          "secondary": "#ba321a",
 
-          "accent": "#d8064c",
+          "accent": "#1dd3a9",
 
-          "neutral": "#1B1F23",
+          "neutral": "#301C31",
 
-          "base-100": "#F7F5FA",
+          "base-100": "#E6E9EA",
 
-          "info": "#87A9F7",
+          "info": "#8FD2EA",
 
-          "success": "#18C9AB",
+          "success": "#46DDA6",
 
-          "warning": "#F18B0E",
+          "warning": "#F2C831",
 
-          "error": "#E85E85",
+          "error": "#E86B54",
         },
       },
 
