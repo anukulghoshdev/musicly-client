@@ -1,6 +1,7 @@
 import Products from "../../pages/Products/Products";
 import Login from "../../pages/RegLog/Login/Login";
 import Register from "../../pages/RegLog/Register/Register";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const { createBrowserRouter } = require("react-router-dom");
 const { default: ErrorPage } = require("../../components/ErrorPage/ErrorPage");
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
             {
                 path: '/category/:id',
                 loader:({params})=>fetch(`http://localhost:5000/category/${params.id}`),
-                element: <Products></Products>
+                element: <PrivateRoute><Products></Products></PrivateRoute>
             }, 
             {
                 path: '/login', 

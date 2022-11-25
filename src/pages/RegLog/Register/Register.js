@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useController, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider';
 
 const Register = () => {
@@ -10,6 +10,7 @@ const Register = () => {
 
     const { createUser, updateUserProfile, googleSignIn } = useContext(AuthContext);
 
+    const navigate = useNavigate();
 
     const handleSignup = (data) => {
         console.log(data);
@@ -43,23 +44,48 @@ const Register = () => {
     }
 
 
-    const handleGoogleSignin=()=>{
+    const handleGoogleSignin = () => {
         googleSignIn()
-        .then(result=>{
-            const user = result.user;
-            console.log(user);
-            toast.success('User Created with google Successfully.')
-            // navigate(from, { replace: true });
-        })
-        .catch(error=>console.log(error))
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                toast.success('User Created with google Successfully.')
+                // navigate(from, { replace: true });
+            })
+            .catch(error => console.log(error))
     }
 
-    const saveUserToDb=(name, email, role)=>{
+    const saveUserToDb = (name, email, role) => {
         // console.log("from saveUserDb function",name, email, role);
-        
+        const user = { name, email, role };
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                getUserToken(email);
+                // 
+            })
+
+
+        const getUserToken = email => {
+            fetch(`http://localhost:5000/jwt?email=${email}`)
+                .then(res => res.json())
+                .then(data => {
+                    if(data.accessToken){
+                        localStorage.setItem('musiclyToken', data.accessToken)
+                        navigate('/')
+                    }
+                   
+                })
+        }
     }
 
-    
+
 
 
 
