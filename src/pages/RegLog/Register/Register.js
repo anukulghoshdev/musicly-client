@@ -86,7 +86,7 @@ const Register = () => {
     }
 
 
-
+// createUser -> updateProfile -> saveUsertoDB -> getUserToken
 
 
     const roles = [
