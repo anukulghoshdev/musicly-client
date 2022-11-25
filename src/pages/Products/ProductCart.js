@@ -2,33 +2,44 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const ProductCart = ({ product }) => {
-    const { product_name, product_pic, resale_price, original_price, years_of_use } = product;
+    const { product_name, product_pic, location, Category_name, resale_price, original_price, years_of_use } = product;
     return (
-        <section class="bg-[#F3F4F6] ">
-            <div class="mb-10 overflow-hidden rounded-lg bg-white border-2 border-lime-900">
-                <img src={product_pic} alt="" className='w-full h-[60]' />
-                <div class="p-8 text-center sm:p-9 md:p-7 xl:p-9">
-                    <h3>
-                        <Link
-                            to="#"
-                            class="text-dark hover:text-primary mb-4 block text-xl font-semibold sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px]"
-                        >
-                            {product_name}
-                        </Link>
-                    </h3>
-                    <p class="text-body-color mb-7 text-base leading-relaxed">
-                        Lorem ipsum dolor sit amet pretium consectetur adipiscing elit.
-                        Lorem consectetur adipiscing elit.
-                    </p>
-                    <Link
-                        to="#"
-                        class="text-body-color hover:border-primary hover:bg-primary inline-block rounded-full border border-[#E5E7EB] py-2 px-7 text-base font-medium transition hover:text-white"
-                    >
-                        View Details
-                    </Link>
-                </div>
+        <div className="max-w-sm rounded overflow-hidden rounded-t-lg shadow-xl">
+
+
+            <img className="w-full h-64 rounded-t-lg " src={product_pic} alt="Sunset in the mountains" />
+
+
+
+            <div className="pl-5 border-2 ">
+                <div className="font-bold text-xl mb-2">{product_name}</div>
+                <h2 className='text-sm text-slate-800 font-medium'>{location}</h2>
             </div>
-        </section >
+            <div className='flex justify-between items-center'>
+                <div className="flex flex-col px-6 pt-4 pb-2 border-2 ">
+
+                    <p>{years_of_use}</p>
+                    <p>25 Jan 2022</p>
+
+                </div>
+                <div>
+                    <h2 className='text-base text-zinc-600 font-bold mr-5'>৳{resale_price}</h2>
+                    <h2 className='text-base line-through text-zinc-600 font-bold mr-5'>৳{original_price}</h2>
+                </div>
+
+            </div>
+
+            <div className='text-center px-3 py-5'>
+                <a href="#_" class="box-border relative z-30 inline-flex items-center justify-center w-full px-8 py-3 overflow-hidden font-bold text-white transition-all duration-300 bg-indigo-600 rounded-md cursor-pointer group ring-offset-2 ring-1 ring-indigo-300 ring-offset-indigo-200 hover:ring-offset-indigo-500 ease focus:outline-none">
+                    <span class="absolute bottom-0 right-0 w-8 h-20 -mb-8 -mr-5 transition-all duration-300 ease-out transform rotate-45 translate-x-1 bg-white opacity-10 group-hover:translate-x-0"></span>
+                    <span class="absolute top-0 left-0 w-20 h-8 -mt-1 -ml-12 transition-all duration-300 ease-out transform -rotate-45 -translate-x-1 bg-white opacity-10 group-hover:translate-x-0"></span>
+                    <span class="relative z-20 flex items-center text-sm">
+                        Book Now
+                    </span>
+                </a>
+            </div>
+
+        </div>
     );
 };
 

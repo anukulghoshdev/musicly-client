@@ -5,6 +5,7 @@ import ProductCart from './ProductCart';
 
 const Products = () => {
     const data = useLoaderData()
+    const category_name = data[0].Category_name;
     console.log(data);
     return (
         <div>
@@ -12,16 +13,18 @@ const Products = () => {
                 <img src={img2} alt="" className='w-full h-full object-cover absolute mix-blend-overlay' />
 
                 <div className='p-24'>
-                    <h2 className='text-7xl text-slate-50 font-bold absolute md:left-40'> Products</h2>
+                    <h2 className='text-7xl text-slate-50 font-bold absolute md:left-40'> {category_name}</h2>
                 </div>
             </div>
 
             <h2 className='text-3xl font-bold text-center'>Products {data.length}</h2>
 
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-5 '>
-                {
-                    data.map(product => <ProductCart key={product._id} product={product}></ProductCart>)
-                }
+            <div className=' mx-auto w-4/6'>
+                <div className='w-8/12 mx-auto grid grid-cols-1 md:grid-cols-2 gap-6'>
+                    {
+                        data.map(product => <ProductCart key={product._id} product={product}></ProductCart>)
+                    }
+                </div>
             </div>
 
         </div>
