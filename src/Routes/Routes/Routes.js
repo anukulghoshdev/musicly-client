@@ -1,4 +1,6 @@
 import DashboardLayout from "../../Layouts/DashboardLayout/DashboardLayout";
+import AllBuyers from "../../pages/DashBoard/AllBuyers/AllBuyers";
+import DashboardWelcomePage from "../../pages/DashBoard/DashboardWelcomePage/DashboardWelcomePage";
 import MyOrders from "../../pages/DashBoard/MyOrders/MyOrders";
 import Products from "../../pages/Products/Products";
 import Login from "../../pages/RegLog/Login/Login";
@@ -41,8 +43,16 @@ const router = createBrowserRouter([
         element:<PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children:[
             {
+                path: '/dashboard',
+                element: <DashboardWelcomePage></DashboardWelcomePage>
+            },
+            {
                 path:'/dashboard/myorders',
                 element: <MyOrders></MyOrders>
+            },
+            {
+                path: '/dashboard/allUser',
+                element: <AllBuyers></AllBuyers>
             }
         ]
     }
