@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import Footer from '../../pages/shared/Footer/Footer';
 import Navbar from '../../pages/shared/Navbar/Navbar';
 
 const DashboardLayout = () => {
@@ -19,7 +18,7 @@ const DashboardLayout = () => {
                     <ul className="menu p-4 w-80 bg-base-100 text-base-content">
                         {/* <!-- Sidebar content here --> */}
                         <li><Link to="/dashboard/myorders">My Orders</Link></li>
-                        <li><Link to="/dashboard/allUser">My Orders</Link></li>
+                        <li><Link to="/dashboard/allUser">All Users</Link></li>
 
                     </ul>
                 </div>

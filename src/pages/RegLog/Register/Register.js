@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { useController, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider';
@@ -18,7 +18,7 @@ const Register = () => {
 
     const navigate = useNavigate();
 
-    if(token){
+    if (token) {
         navigate("/")
     }
     const handleSignup = (data) => {
@@ -59,9 +59,32 @@ const Register = () => {
                 console.log(user);
                 toast.success('User Created with google Successfully.')
                 // navigate(from, { replace: true });
+                const userGoogle = { name: user.displayName, email: user.email, role: 'Buyer' };
+                // const { name, email, role } = userGoogle;
+
+                saveUserToDbForGoogle(userGoogle)
+
             })
             .catch(error => console.log(error))
     }
+    const saveUserToDbForGoogle = (user) => {
+        console.log(user);
+
+        fetch(`http://localhost:5000/googleusers?email=${user.email}`, {
+            method: 'PUT',
+            headers:{
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                setCreatedUserEmail(user.email)
+            })
+
+    }
+
+
 
     const saveUserToDb = (name, email, role) => {
         // console.log("from saveUserDb function",name, email, role);
@@ -77,7 +100,6 @@ const Register = () => {
             .then(data => {
                 // getUserToken(email);
                 setCreatedUserEmail(email)
-                
             })
 
 
@@ -94,7 +116,9 @@ const Register = () => {
     }
 
 
-// createUser -> updateProfile -> saveUsertoDB -> getUserToken
+
+
+    // createUser -> updateProfile -> saveUsertoDB -> getUserToken
 
 
     const roles = [
