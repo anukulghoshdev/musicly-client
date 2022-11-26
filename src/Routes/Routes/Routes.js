@@ -1,4 +1,5 @@
 import DashboardLayout from "../../Layouts/DashboardLayout/DashboardLayout";
+import MyOrders from "../../pages/DashBoard/MyOrders/MyOrders";
 import Products from "../../pages/Products/Products";
 import Login from "../../pages/RegLog/Login/Login";
 import Register from "../../pages/RegLog/Register/Register";
@@ -37,7 +38,13 @@ const router = createBrowserRouter([
     }, 
     {
         path: '/dashboard',
-        element:<DashboardLayout></DashboardLayout>
+        element:<DashboardLayout></DashboardLayout>,
+        children:[
+            {
+                path:'/dashboard/myorders',
+                element: <MyOrders></MyOrders>
+            }
+        ]
     }
 ])
 
