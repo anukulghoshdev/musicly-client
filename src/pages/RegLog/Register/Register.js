@@ -3,6 +3,7 @@ import { useController, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider';
+import useToken from '../../../hooks/useToken';
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -10,8 +11,16 @@ const Register = () => {
 
     const { createUser, updateUserProfile, googleSignIn } = useContext(AuthContext);
 
+    const [createdUserEmail, setCreatedUserEmail] = useState('');
+    const [token] = useToken(createdUserEmail)
+
+
+
     const navigate = useNavigate();
 
+    if(token){
+        navigate("/")
+    }
     const handleSignup = (data) => {
         console.log(data);
 
@@ -32,7 +41,6 @@ const Register = () => {
                         saveUserToDb(data.name, data.email, data.role)
                     })
                     .catch(err => console.log(err));
-
 
                 // ...
             })
@@ -67,22 +75,22 @@ const Register = () => {
         })
             .then(res => res.json())
             .then(data => {
-                getUserToken(email);
-                // 
+                // getUserToken(email);
+                setCreatedUserEmail(email)
+                
             })
 
 
-        const getUserToken = email => {
-            fetch(`http://localhost:5000/jwt?email=${email}`)
-                .then(res => res.json())
-                .then(data => {
-                    if(data.accessToken){
-                        localStorage.setItem('musiclyToken', data.accessToken)
-                        navigate('/')
-                    }
-                   
-                })
-        }
+        // const getUserToken = email => {
+        //     fetch(`http://localhost:5000/jwt?email=${email}`)
+        //         .then(res => res.json())
+        //         .then(data => {
+        //             if(data.accessToken){
+        //                 localStorage.setItem('musiclyToken', data.accessToken)
+        //                 navigate('/')
+        //             }
+        //         })
+        // }
     }
 
 
