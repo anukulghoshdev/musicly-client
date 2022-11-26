@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const ProductCart = ({ product }) => {
+const ProductCart = ({ product, setSell_product }) => {
+
     const { product_name, product_pic, location, Category_name, resale_price, original_price, years_of_use } = product;
     return (
         <div className="max-w-sm rounded overflow-hidden rounded-t-lg shadow-xl">
@@ -30,13 +31,15 @@ const ProductCart = ({ product }) => {
             </div>
 
             <div className='text-center px-3 py-5'>
-                <a href="#_" class="box-border relative z-30 inline-flex items-center justify-center w-full px-8 py-3 overflow-hidden font-bold text-white transition-all duration-300 bg-indigo-600 rounded-md cursor-pointer group ring-offset-2 ring-1 ring-indigo-300 ring-offset-indigo-200 hover:ring-offset-indigo-500 ease focus:outline-none">
-                    <span class="absolute bottom-0 right-0 w-8 h-20 -mb-8 -mr-5 transition-all duration-300 ease-out transform rotate-45 translate-x-1 bg-white opacity-10 group-hover:translate-x-0"></span>
-                    <span class="absolute top-0 left-0 w-20 h-8 -mt-1 -ml-12 transition-all duration-300 ease-out transform -rotate-45 -translate-x-1 bg-white opacity-10 group-hover:translate-x-0"></span>
-                    <span class="relative z-20 flex items-center text-sm">
-                        Book Now
+                <label onClick={() => setSell_product(product)} htmlFor="BuyingModal"  className=" btn btn-primary box-border relative z-30 inline-flex items-center justify-center w-full px-8 py-3 overflow-hidden font-bold text-white transition-all duration-300 bg-indigo-600 rounded-md cursor-pointer group ring-offset-2 ring-1 ring-indigo-300 ring-offset-indigo-200 hover:ring-offset-indigo-500 ease focus:outline-none">
+                    <span className="absolute bottom-0 right-0 w-8 h-20 -mb-8 -mr-5 transition-all duration-300 ease-out transform rotate-45 translate-x-1 bg-white opacity-10 group-hover:translate-x-0"></span>
+                    <span className="absolute top-0 left-0 w-20 h-8 -mt-1 -ml-12 transition-all duration-300 ease-out transform -rotate-45 -translate-x-1 bg-white opacity-10 group-hover:translate-x-0"></span>
+                    <span className="relative z-20 flex items-center text-sm">
+                        Buy Now
                     </span>
-                </a>
+                </label>
+
+                    {/* <label htmlFor="BuyingModal" className="btn">open modal</label> */}
             </div>
 
         </div>
