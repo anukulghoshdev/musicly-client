@@ -23,6 +23,7 @@ const BuyingModal = ({ sell_product, setSell_product }) => {
             username,
             email,
             product_price,
+            product_img:sell_product.product_pic,
             phone,
             meeting_location,
 
