@@ -58,8 +58,8 @@ const MyOrders = () => {
                                         <td className="text-left py-3 px-4"><a className="hover:text-blue-500" href="tel:622322662">{order.phone}</a></td>
                                         <td className="text-left py-3 px-4">{order.meeting_location}</td>
                                         <td className="text-left py-3 px-4">
-                                            
-                                                <button className="border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline">Pay Now</button>
+
+                                            <button className="border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline">Pay Now</button>
                                         </td>
                                     </tr>
                                 )
