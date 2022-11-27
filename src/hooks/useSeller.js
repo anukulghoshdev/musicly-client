@@ -9,7 +9,7 @@ const useSeller = (email) => {
             fetch(`http://localhost:5000/users/seller/${email}`)
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data); // { isSeller: user?.role === 'Seller' }
+                    // console.log(data); // { isSeller: user?.role === 'Seller' }
                     setIsSeller(data.isSeller)
                     setSellerLoading(false);
                 })
