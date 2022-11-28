@@ -1,7 +1,10 @@
 import { async } from '@firebase/util';
 import { useQuery } from '@tanstack/react-query';
+import { Result } from 'postcss';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider';
 import Loader from '../../shared/Loader/Loader';
 
@@ -9,7 +12,13 @@ const AddPrducts = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { user } = useContext(AuthContext)
 
+    const navigate = useNavigate();
+
     const posted_time = new Date();
+
+    const imgHostKey = process.env.REACT_APP_img_bb_host_api;
+
+
 
 
     const conditions = [
@@ -30,8 +39,55 @@ const AddPrducts = () => {
 
     const handleAddProduct = (data) => {
         console.log(data);
+        const image = data.image[0];
+        const formData = new FormData();
+        formData.append('image', image);
+        const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imgHostKey}`
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(imageData => {
+                if (imageData.success) {
+                    // console.log(imageData.data.url);
+                    const product = {
+                        product_name: data.product_name,
+                        product_pic: imageData.data.url,
+                        Category_name: data.Category_name,
+                        resale_price: data.resale_price,
+                        location: data.location,
+                        original_price: data.original_price,
+                        years_of_use: data.years_of_use,
+                        posted_time: data.posted_time,
+                        seller_name: data.seller_name,
+                        condition: data.condition,
+                        description: data.description,
 
+                    }
+                    // save product to db
+                    fetch("http://localhost:5000/products", {
+                        method: 'POST',
+                        headers: {
+                            "content-type": "application/json",
+                            authorization: `bearer ${localStorage.getItem('musiclyToken')}`
+                        },
+                        body: JSON.stringify(product)
+                    })
+                        .then((res) => res.json())
+                        .then(result => {
+                            console.log(result);
+                            if(result.acknowledged){
+                                toast.success('product added successfully')
+                                navigate('/dashboard/myproduct')
+                                
+
+                            }
+                        })
+                }
+            })
     }
+
     const { data: categories = [], isLoading } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
@@ -41,7 +97,7 @@ const AddPrducts = () => {
         }
     })
 
-    if(isLoading){
+    if (isLoading) {
         return <Loader></Loader>
     }
 
@@ -61,7 +117,7 @@ const AddPrducts = () => {
                     <div >
                         <div className="overflow-hidden shadow sm:rounded-md">
                             <div className="bg-white px-4 py-5 sm:p-6">
-                                <form onSubmit={handleSubmit(handleAddProduct)} className="grid grid-cols-6 gap-6">
+                                <form onSubmit={handleSubmit(handleAddProduct)} className="grid grid-cols-6 gap-6 ">
 
                                     <div className="form-control col-span-6 sm:col-span-3">
                                         <label for="product_name" className="block text-sm font-medium text-gray-700">Product Name</label>
@@ -69,8 +125,13 @@ const AddPrducts = () => {
                                     </div>
 
                                     <div className=" form-control col-span-6 sm:col-span-3">
-                                        <label for="resale_price" className="block text-sm font-medium text-gray-700">Price</label>
+                                        <label for="resale_price" className="block text-sm font-medium text-gray-700">Resale Price</label>
                                         <input {...register("resale_price", { required: "Price Name is required" })} type="text" placeholder="Type here" className="input input-bordered input-sm w-full " />
+                                    </div>
+
+                                    <div className=" form-control col-span-6 sm:col-span-3">
+                                        <label for="resale_price" className="block text-sm font-medium text-gray-700">Origianl Price</label>
+                                        <input {...register("original_price", { required: "Price Name is required" })} type="text" placeholder="Type here" className="input input-bordered input-sm w-full " />
                                     </div>
 
                                     <div className="col-span-6 sm:col-span-3">
@@ -117,11 +178,20 @@ const AddPrducts = () => {
                                         <label for="posted_time" className="block text-sm font-medium text-gray-700">Posted Time</label>
                                         <input {...register("posted_time")} defaultValue={posted_time} readOnly type="text" placeholder="Type here" className="input input-bordered input-sm w-full " />
                                     </div>
-                                                <br />
-                                    <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
-                                        <button type="submit" className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Add Product</button>
+
+
+
+                                    <div className="form-control w-full  ">
+                                        <label className="label">
+                                            <span className="label-text">Product Photo</span>
+                                        </label>
+                                        <input {...register("image", { required: "Image is required" })} type="file" className="input input-bordered w-full " />
+                                        {errors.image && <p className='text-red-500'>{errors.image.message}</p>}
                                     </div>
 
+                                    <div className="bg-gray-50  text-right  ">
+                                        <button type="submit" className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Add Product</button>
+                                    </div>
 
                                 </form>
                             </div>

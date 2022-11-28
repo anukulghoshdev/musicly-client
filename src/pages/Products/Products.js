@@ -26,7 +26,7 @@ const Products = () => {
             <h2 className='text-3xl font-bold text-center'>Products {data.length}</h2>
 
             <div className=' mx-auto w-4/6'>
-                <div className='w-8/12 mx-auto grid grid-cols-1 md:grid-cols-2 gap-6'>
+                <div className='lg:w-5/6 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                     {
                         data.map(product => <ProductCart key={product._id} product={product} setSell_product={setSell_product}></ProductCart>)
                     }

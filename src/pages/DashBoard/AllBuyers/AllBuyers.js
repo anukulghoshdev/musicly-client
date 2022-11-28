@@ -8,7 +8,7 @@ const AllBuyers = () => {
         queryKey: ['users'],
         queryFn: async () => {
             const res = await fetch(url)
-            const data = res.json()
+            const data = await res.json()
             return data
         }
     })
