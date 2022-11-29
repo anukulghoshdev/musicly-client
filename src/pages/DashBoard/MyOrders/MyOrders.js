@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider';
 import Loader from '../../shared/Loader/Loader';
 
@@ -49,18 +50,28 @@ const MyOrders = () => {
                         <tbody className="text-gray-700">
                             {
                                 orders?.map(order =>
-                                    <tr className='border'>
+                                    <tr key={order._id} className='border'>
                                         <td className="w-1/3 text-left py-3 px-4">
                                             <img className='w-20' src={order.product_img} alt="" />
                                         </td>
                                         <td className="w-1/3 text-left py-3 px-4">{order.product_name}</td>
                                         <td className="w-1/3 text-left py-3 px-4">{order.product_price}</td>
-                                        <td className="text-left py-3 px-4"><a className="hover:text-blue-500" href="tel:622322662">{order.phone}</a></td>
-                                        <td className="text-left py-3 px-4">{order.meeting_location}</td>
-                                        <td className="text-left py-3 px-4">
+                                        <td className="w-1/3 text-left py-3 px-4">{order.phone}</td>
+                                        <td className="w-1/3 text-left py-3 px-4">{order.meeting_location}</td>
+                                        <td className="w-1/3 text-left py-3 px-4">
+                                            {
+                                                order.paid ?
+                                                    <button class="bg-blue-500 text-white font-bold py-2 px-4 rounded opacity-50 cursor-not-allowed">
+                                                        Paid
+                                                    </button>
+                                                    :
 
-                                            <button className="border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline">Pay Now</button>
+                                                    <Link to={`/dashboard/payment/${order._id}`}>
+                                                        <button className="border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline">Pay Now</button>
+                                                    </Link>
+                                            }
                                         </td>
+
                                     </tr>
                                 )
                             }

@@ -1,4 +1,5 @@
 import DashboardLayout from "../../Layouts/DashboardLayout/DashboardLayout";
+import Blogs from "../../pages/Blogs/Blogs";
 import AddPrducts from "../../pages/DashBoard/AddPrducts/AddPrducts";
 import AllBuyers from "../../pages/DashBoard/AllBuyers/AllBuyers";
 import AllUsers from "../../pages/DashBoard/AllUsers/AllUsers";
@@ -6,6 +7,7 @@ import DashboardWelcomePage from "../../pages/DashBoard/DashboardWelcomePage/Das
 import MyBuyers from "../../pages/DashBoard/MyBuyers/MyBuyers";
 import MyOrders from "../../pages/DashBoard/MyOrders/MyOrders";
 import MyProducts from "../../pages/DashBoard/MyProducts/MyProducts";
+import Payment from "../../pages/DashBoard/Payment/Payment";
 import ReportedItems from "../../pages/DashBoard/ReportedItems/ReportedItems";
 import Products from "../../pages/Products/Products";
 import Login from "../../pages/RegLog/Login/Login";
@@ -41,6 +43,10 @@ const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register> 
+            },
+            {
+                path: '/blogs',
+                element: <Blogs></Blogs>
             }
 
         ]
@@ -48,6 +54,7 @@ const router = createBrowserRouter([
     {
         path: '/dashboard',
         element:<PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        // errorElement: <ErrorPage></ErrorPage>,
         children:[
             {
                 path: '/dashboard',
@@ -74,12 +81,17 @@ const router = createBrowserRouter([
                 element: <SellerRoute><AddPrducts></AddPrducts></SellerRoute>
             },
             {
-                path: '/dashboard/myproduct',
+                path: '/dashboard/myproducts',
                 element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
             },
             {
                 path: '/dashboard/myBuyers',
                 element:  <SellerRoute><MyBuyers></MyBuyers></SellerRoute>
+            },
+            {
+                path: '/dashboard/payment/:id',
+                element: <Payment></Payment>,
+                loader: ({params})=>fetch(`http://localhost:5000/orders/${params.id}`)
             }
         ]
     }

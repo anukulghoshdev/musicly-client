@@ -9,21 +9,21 @@ const Banner = () => {
 
     const bannerImageSlides = [
         {
-            image: img1,
+            image: img3,
             id: 1,
-            text: 'A Great instruments ',
+            text: 'From Starters To Pro... ',
             prev: 3,
             next: 2
         },
         {
-            image: img2,
+            image: img1,
             id: 2,
             text: 'Exciting Guitar Pack',
             prev: 1,
             next: 3
         },
         {
-            image: img3,
+            image: img2,
             id: 3,
             text: 'New Jersey Guiter',
             prev: 2,

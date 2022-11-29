@@ -14,7 +14,7 @@ const Navbar = () => {
 
         <li className='font-semibold'><Link to='/'>Home</Link></li>
         <li className='font-semibold'><Link to='/dashboard'>Dashboard</Link></li>
-        <li className='font-semibold'><Link to='#'>Blogs</Link></li>
+        <li className='font-semibold'><Link to='/blogs'>Blogs</Link></li>
         <li className='font-semibold'><Link to='#'>Contact Us</Link></li>
 
 
@@ -39,8 +39,8 @@ const Navbar = () => {
                         {menuItems}
                     </ul>
                 </div>
-                <img className='w-4' src={icon} alt="" />
-                <Link className="btn btn-ghost normal-case text-xl">Musicly</Link>
+                
+                <Link to='/' className="btn btn-ghost normal-case text-xl"><img className='w-4 mr-3' src={icon} alt="" /> Musicly</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal p-0">

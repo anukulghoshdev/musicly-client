@@ -49,6 +49,7 @@ const AddPrducts = () => {
         })
             .then(res => res.json())
             .then(imageData => {
+                console.log(imageData);
                 if (imageData.success) {
                     // console.log(imageData.data.url);
                     const product = {
@@ -66,7 +67,7 @@ const AddPrducts = () => {
 
                     }
                     // save product to db
-                    fetch("http://localhost:5000/products", {
+                    fetch("http://localhost:5000/addproducts", {
                         method: 'POST',
                         headers: {
                             "content-type": "application/json",
@@ -79,7 +80,7 @@ const AddPrducts = () => {
                             console.log(result);
                             if(result.acknowledged){
                                 toast.success('product added successfully')
-                                navigate('/dashboard/myproduct')
+                                navigate('/dashboard/myproducts')
                                 
 
                             }

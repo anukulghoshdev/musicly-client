@@ -1,10 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import Loader from '../../shared/Loader/Loader';
+import { RiDeleteBin6Fill } from "react-icons/ri";
+import DeleteConfirmModal from '../../../components/DeleteConfirmModal/DeleteConfirmModal';
 
-const AllSeller = () => {
-    const [sellers, setSellers] = useState([])
-    const [loader, setLoader] = useState(true)
+const AllSeller = ({setDeletedUser}) => {
+    const [sellers, setSellers] = useState([]);
+    const [loader, setLoader] = useState(true);
+    
+
     // const { data: sellers = [], isLoading } = useQuery({
     //     queryKey: ['users'],
     //     queryFn: async () => {
@@ -26,8 +30,12 @@ const AllSeller = () => {
                 setLoader(false)
             })
     }, [])
-    if(loader){
+    if (loader) {
         return <Loader></Loader>
+    }
+
+    const handleDelete = (user) => {
+        console.log(user);
     }
 
     return (
@@ -40,6 +48,7 @@ const AllSeller = () => {
                             <th className="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Username</th>
                             <th className="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">email</th>
                             <th className="text-left py-3 px-4 uppercase font-semibold text-sm">role</th>
+                            <th className="text-left py-3 px-4 uppercase font-semibold text-sm">Action</th>
 
                         </tr>
                     </thead>
@@ -49,14 +58,18 @@ const AllSeller = () => {
                                 <tr>
                                     <td className="w-1/3 text-left py-3 px-4">{seller.name}</td>
                                     <td className="w-1/3 text-left py-3 px-4">{seller.email}</td>
-                                    <td className="text-left py-3 px-4"><a className="hover:text-blue-500" href="tel:622322662">{seller.role}</a></td>
-
+                                    <td className="w-1/3 text-left py-3 px-4"><a className="hover:text-blue-500" href="tel:622322662">{seller.role}</a></td>
+                                    <td className="w-1/3 text-left py-3 px-4">
+                                        <label htmlFor="Delete-Confirm-Modal" button onClick={() => setDeletedUser(seller)} type="button" className="inline-block px-4 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out cursor-pointer"><RiDeleteBin6Fill></RiDeleteBin6Fill></label>
+                                    </td>
                                 </tr>
                             )
                         }
                     </tbody>
                 </table>
             </div>
+            
+
         </div>
     );
 };
