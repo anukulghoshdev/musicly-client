@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigation } from 'react-router-dom';
 import img2 from '../../assests/images/banner-imgs/img2.jpg'
 import BuyingModal from '../../components/BuyingModal/BuyingModal';
+import Loader from '../shared/Loader/Loader';
 import ProductCart from './ProductCart';
 
 const Products = () => {
     const data = useLoaderData()
+    const navigation = useNavigation();
     const category_name = data[0].Category_name;
     // console.log(data);
 
     const [sell_product, setSell_product]=useState(null);
   
 
+    if(navigation.state==='loading'){
+        return <Loader></Loader>
+    }
 
     return (
         <div>

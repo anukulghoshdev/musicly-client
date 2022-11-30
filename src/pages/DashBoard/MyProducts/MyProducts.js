@@ -33,6 +33,7 @@ const MyProducts = () => {
     const closeModal = () => {
         setDeletedProduct(null)
     }
+    
     const handleDeleteProduct = (product) => {
         console.log(product);
 
@@ -48,6 +49,18 @@ const MyProducts = () => {
                 }
 
             })
+    }
+
+    const handleAdvertise=(id)=>{ // 
+        fetch(`http://localhost:5000/product/advertise/${id}`,{ // {acknowledged: true, modifiedCount: 1, upsertedId: null, upsertedCount: 0, matchedCount: 1}
+            method: 'PUT'
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            if(data.modifiedCount>0){
+                toast.success("Product Advertise on Home")
+            }
+        })
     }
 
     return (
@@ -89,14 +102,13 @@ const MyProducts = () => {
                                                         Sold
                                                     </Link>
                                                     :
-                                                    <Link to="#" class="w-9/12 py-2 text-base text-center text-white transition-colors duration-300 bg-green-400 rounded-full hover:bg-green-500 ease px-4 md:w-auto">
+                                                    <button onClick={()=>handleAdvertise(product._id)} class="w-9/12 py-2 text-base text-center text-white transition-colors duration-300 bg-green-400 rounded-full hover:bg-green-500 ease px-4 md:w-auto">
                                                         Available
-                                                    </Link>
+                                                    </button>
                                             }
                                         </td>
                                         <td className="w-1/3 text-left py-2 px-5">
                                             <label htmlFor="Delete-Confirm-Modal" onClick={() => setDeletedProduct(product)} type="button" class="inline-block px-4 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out cursor-pointer"><RiDeleteBin6Fill></RiDeleteBin6Fill></label>
-                                            
                                         </td>
 
                                     </tr>

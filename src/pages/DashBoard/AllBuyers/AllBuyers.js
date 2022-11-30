@@ -2,10 +2,9 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import Loader from '../../shared/Loader/Loader';
 import { RiDeleteBin6Fill } from "react-icons/ri";
-import toast from 'react-hot-toast';
 const AllBuyers = ({ setDeletedUser }) => {
     const url = `http://localhost:5000/users/buyer?role=Buyer`
-    const { data: buyers = [], isLoading, refetch } = useQuery({
+    const { data: buyers = [], isLoading } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
             const res = await fetch(url)
@@ -13,21 +12,6 @@ const AllBuyers = ({ setDeletedUser }) => {
             return data
         }
     })
-
-
-    const handleDeleteUser = user => {
-        // console.log(user);
-        fetch(`http://localhost:5000/user/${user._id}`, {
-            method: 'DELETE',
-            authorization: `bearer ${localStorage.getItem('musiclyToken')}`
-        })
-            .then(res => res.json())
-            .then(data=>{
-                if(data.deletedCount){
-                    toast.success('Deleted Successfully')
-                }
-            })
-    }
 
 
 

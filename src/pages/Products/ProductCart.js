@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BsFillCheckCircleFill } from "react-icons/bs";
 
 const ProductCart = ({ product, setSell_product }) => {
 
     const { product_name, product_pic, location, Category_name, resale_price, original_price, years_of_use, seller_name, posted_time } = product;
+
+    // useEffect(() => {
+    //     fetch("http://localhost:5000/users/seller?role=Seller")
+    //         .then(res => res.json())
+    //         .then(data => {
+    //             setSellers(data)
+        
+    //         })
+    // }, []) ----------------------
+
     return (
         <div className="max-w-sm rounded overflow-hidden rounded-t-lg shadow-xl">
 
@@ -16,7 +26,7 @@ const ProductCart = ({ product, setSell_product }) => {
             <div className="pl-5 ">
                 <div className="font-bold text-xl mb-2">{product_name}</div>
             </div>
-       
+
 
 
             <div className='pl-5 flex justify-between  items-center '>
@@ -24,7 +34,7 @@ const ProductCart = ({ product, setSell_product }) => {
                 <div className='pr-3'>
                     <div className='flex items-center'>
                         Seller: {seller_name}
-                        <BsFillCheckCircleFill className='text-sky-500 ml-1'></BsFillCheckCircleFill>
+                            <BsFillCheckCircleFill className='text-sky-500 ml-1'></BsFillCheckCircleFill>
                     </div>
                 </div>
             </div>
