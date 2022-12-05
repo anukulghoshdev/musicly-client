@@ -16,8 +16,9 @@ adminEmail: harov21663@rubeshi.com adminPassword: Abcdef1@
 - daisyUi 
 - Stripe-react
 
--------different features and functionality------- used Musical instruments-resale platform with multi vendor users
+-------different features and functionality------- 
 
+- used Musical instruments-resale platform with multi vendor users
 - user roles: Admin, Seller, Buyer.
 - Seller, Buyer role canbe choose when user signup.
 - Seller can add their product which he/she want to sell with product details, meeting location.
