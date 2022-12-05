@@ -13,7 +13,7 @@ const AllSeller = ({ setDeletedUser }) => {
     // const { data: sellers = [], isLoading } = useQuery({
     //     queryKey: ['users'],
     //     queryFn: async () => {
-    //         const res = await fetch("http://localhost:5000/users/seller?role=Seller")
+    //         const res = await fetch("https://musicly-server-kjmtmdl3u-anukulghoshdev.vercel.app/users/seller?role=Seller")
     //         const data = res.json()
     //         return data
     //     }
@@ -24,7 +24,7 @@ const AllSeller = ({ setDeletedUser }) => {
     // }
 
     useEffect(() => {
-        fetch("http://localhost:5000/users/seller?role=Seller")
+        fetch("https://musicly-server-kjmtmdl3u-anukulghoshdev.vercel.app/users/seller?role=Seller")
             .then(res => res.json())
             .then(data => {
                 setSellers(data)
@@ -36,7 +36,7 @@ const AllSeller = ({ setDeletedUser }) => {
     }
 
     const handleVerifySeller=(id)=>{ // /user/seller/verify/:id
-        fetch(`http://localhost:5000/user/seller/verify/${id}`,{ //{acknowledged: true, modifiedCount: 1, upsertedId: null, upsertedCount: 0, matchedCount: 1}
+        fetch(`https://musicly-server-kjmtmdl3u-anukulghoshdev.vercel.app/user/seller/verify/${id}`,{ //{acknowledged: true, modifiedCount: 1, upsertedId: null, upsertedCount: 0, matchedCount: 1}
             method: 'PUT'
         })
         .then(res=>res.json())

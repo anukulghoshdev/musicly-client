@@ -7,7 +7,7 @@ import Loader from '../../shared/Loader/Loader';
 const MyOrders = () => {
     const { user } = useContext(AuthContext);
 
-    const url = `http://localhost:5000/mybookingorders?email=${user?.email}`;
+    const url = `https://musicly-server-kjmtmdl3u-anukulghoshdev.vercel.app/mybookingorders?email=${user?.email}`;
 
     const { data: orders = [], isLoading } = useQuery({
         queryKey: ['mybookingorders', user?.email],

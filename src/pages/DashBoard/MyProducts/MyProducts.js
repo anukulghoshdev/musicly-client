@@ -15,7 +15,7 @@ const MyProducts = () => {
     const { data: myproducts = [], isLoading, refetch } = useQuery({
         queryKey: ['myproducts', user.displayName],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/myproducts?seller_name=${user.displayName}`, {
+            const res = await fetch(`https://musicly-server-kjmtmdl3u-anukulghoshdev.vercel.app/myproducts?seller_name=${user.displayName}`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('musiclyToken')}`
                 }
@@ -37,7 +37,7 @@ const MyProducts = () => {
     const handleDeleteProduct = (product) => {
         console.log(product);
 
-        fetch(`http://localhost:5000/product/${product._id}`, {
+        fetch(`https://musicly-server-kjmtmdl3u-anukulghoshdev.vercel.app/product/${product._id}`, {
             method: 'DELETE',
             authorization: `bearer ${localStorage.getItem('musiclyToken')}`
         })
@@ -52,7 +52,7 @@ const MyProducts = () => {
     }
 
     const handleAdvertise=(id)=>{ // 
-        fetch(`http://localhost:5000/product/advertise/${id}`,{ // {acknowledged: true, modifiedCount: 1, upsertedId: null, upsertedCount: 0, matchedCount: 1}
+        fetch(`https://musicly-server-kjmtmdl3u-anukulghoshdev.vercel.app/product/advertise/${id}`,{ // {acknowledged: true, modifiedCount: 1, upsertedId: null, upsertedCount: 0, matchedCount: 1}
             method: 'PUT'
         })
         .then(res=>res.json())

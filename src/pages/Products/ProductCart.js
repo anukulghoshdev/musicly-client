@@ -7,7 +7,7 @@ const ProductCart = ({ product, setSell_product }) => {
     const { product_name, product_pic, location, Category_name, resale_price, original_price, years_of_use, seller_name, posted_time } = product;
 
     // useEffect(() => {
-    //     fetch("http://localhost:5000/users/seller?role=Seller")
+    //     fetch("https://musicly-server-kjmtmdl3u-anukulghoshdev.vercel.app/users/seller?role=Seller")
     //         .then(res => res.json())
     //         .then(data => {
     //             setSellers(data)

@@ -3,7 +3,7 @@ import React from 'react';
 import Loader from '../../shared/Loader/Loader';
 import { RiDeleteBin6Fill } from "react-icons/ri";
 const AllBuyers = ({ setDeletedUser }) => {
-    const url = `http://localhost:5000/users/buyer?role=Buyer`
+    const url = `https://musicly-server-kjmtmdl3u-anukulghoshdev.vercel.app/users/buyer?role=Buyer`
     const { data: buyers = [], isLoading } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {

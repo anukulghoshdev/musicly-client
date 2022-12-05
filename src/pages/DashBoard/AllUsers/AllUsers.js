@@ -11,7 +11,7 @@ const AllUsers = () => {
         setDeletedUser(null)
     }
     const handleDeleteUser = user => {
-        fetch(`http://localhost:5000/user/${user._id}`, {
+        fetch(`https://musicly-server-kjmtmdl3u-anukulghoshdev.vercel.app/user/${user._id}`, {
             method: 'DELETE',
             authorization: `bearer ${localStorage.getItem('musiclyToken')}`
         })

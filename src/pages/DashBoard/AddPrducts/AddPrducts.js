@@ -67,7 +67,7 @@ const AddPrducts = () => {
 
                     }
                     // save product to db
-                    fetch("http://localhost:5000/addproducts", {
+                    fetch("https://musicly-server-kjmtmdl3u-anukulghoshdev.vercel.app/addproducts", {
                         method: 'POST',
                         headers: {
                             "content-type": "application/json",
@@ -92,7 +92,7 @@ const AddPrducts = () => {
     const { data: categories = [], isLoading } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
-            const res = await fetch("http://localhost:5000/productCategories")
+            const res = await fetch("https://musicly-server-kjmtmdl3u-anukulghoshdev.vercel.app/productCategories")
             const data = await res.json()
             return data;
         }

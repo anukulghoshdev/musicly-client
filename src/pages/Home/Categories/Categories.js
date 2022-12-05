@@ -12,7 +12,7 @@ const Categories = () => {
     const { data: categories = [], isLoading } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/categories')
+            const res = await fetch('https://musicly-server-kjmtmdl3u-anukulghoshdev.vercel.app/categories')
             const data = await res.json()
             return data;
         }

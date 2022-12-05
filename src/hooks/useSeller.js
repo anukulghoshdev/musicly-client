@@ -6,7 +6,7 @@ const useSeller = (email) => {
 
     useEffect(() => {
         if (email) {
-            fetch(`http://localhost:5000/users/seller/${email}`)
+            fetch(`https://musicly-server-kjmtmdl3u-anukulghoshdev.vercel.app/users/seller/${email}`)
                 .then(res => res.json())
                 .then(data => {
                     // console.log(data); // { isSeller: user?.role === 'Seller' }
