@@ -2,6 +2,8 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import Loader from '../../shared/Loader/Loader';
 import { RiDeleteBin6Fill } from "react-icons/ri";
+
+
 const AllBuyers = ({ setDeletedUser }) => {
     const url = `https://musicly-server-kjmtmdl3u-anukulghoshdev.vercel.app/users/buyer?role=Buyer`
     const { data: buyers = [], isLoading } = useQuery({
@@ -14,10 +16,10 @@ const AllBuyers = ({ setDeletedUser }) => {
     })
 
 
-
     if (isLoading) {
         return <Loader></Loader>
     }
+
     return (
         <div>
             {/* <!-- component --> */}
@@ -31,8 +33,6 @@ const AllBuyers = ({ setDeletedUser }) => {
                                 <th className="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Email</th>
                                 <th className="text-left py-3 px-4 uppercase font-semibold text-sm">Role</th>
                                 <th className="text-left py-3 px-4 uppercase font-semibold text-sm">Action</th>
-
-
                             </tr>
                         </thead>
                         <tbody className="text-gray-700">

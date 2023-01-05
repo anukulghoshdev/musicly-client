@@ -1,55 +1,68 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
 import Loader from '../../shared/Loader/Loader';
 import AdvertisedItemsCard from './AdvertisedItemsCard';
 
+import Slider from "react-slick";
+
+
 const AdvertisedItems = () => {
-    const responsive = {
-        superLargeDesktop: {
-            // the naming can be any, depends on you.
-            breakpoint: { max: 4000, min: 3000 },
-            items: 5
-        },
-        desktop: {
-            breakpoint: { max: 3000, min: 1024 },
-            items: 4
-        },
-        tablet: {
-            breakpoint: { max: 1024, min: 464 },
-            items: 3
-        },
-        mobile: {
-            breakpoint: { max: 464, min: 0 },
-            items: 1
-        }
+
+
+
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1
     };
 
-    const {data:products, isLoading}=useQuery({
-        queryKey:['products'],
-        queryFn: async()=>{
-            const res = await fetch(`https://musicly-server-kjmtmdl3u-anukulghoshdev.vercel.app/products`)
+
+    const { data: products, isLoading } = useQuery({
+        queryKey: ['products'],
+        queryFn: async () => {
+            const res = await fetch(`https://musicly-server-anukulghoshdev.vercel.app/products/advertise`)
             const data = await res.json();
             return data;
         }
     })
+
     if (isLoading) {
         return <Loader></Loader>
     }
 
     return (
-        <div className='py-14 text-center  max-w-7xl mx-auto'>
-            <h3 className='text-3xl font-semibold my-7' >Advertised Products {products.length}</h3>
-            <Carousel className='py-7 my-10 ' responsive={responsive}>
-                {
-                    products.map((product, i)=>product.advertise && <AdvertisedItemsCard 
-                        product={product}
-                    />)
-                }
 
-            </Carousel>;
+
+
+
+
+
+
+        <div className="bg-[#e0fbfc] flex  justify-center py-16 overflow-hidden">
+
+            <div>
+                <h2 className='text-4xl font-semibold block text-center'>Advertise Products</h2>
+
+
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-11 py-8 px-4'>
+
+                    {
+                        products.map((product, i) => <AdvertisedItemsCard
+                            product={product}
+                        />)
+                        // products.map(product => console.log(product))
+                    }
+
+                </div>
+            </div>
         </div>
+
+
+
+
+
     );
 };
 

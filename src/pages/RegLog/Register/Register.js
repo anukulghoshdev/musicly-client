@@ -72,7 +72,7 @@ const Register = () => {
 
         fetch(`https://musicly-server-kjmtmdl3u-anukulghoshdev.vercel.app/googleusers?email=${user.email}`, {
             method: 'PUT',
-            headers:{
+            headers: {
                 "content-type": "application/json"
             },
             body: JSON.stringify(user)
@@ -134,77 +134,78 @@ const Register = () => {
 
     return (
         <div>
-            <div className="hero min-h-screen bg-base-200">
-                <div className="hero-content flex-col lg:flex-row-reverse">
-                    <div className="text-center lg:text-left">
-                        <h1 className="text-5xl font-bold">Register now!</h1>
-                        <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut eaque aut repudiandae et a id nisi.</p>
-                    </div>
-                    <form onSubmit={handleSubmit(handleSignup)} className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                        <div className="card-body pb-0">
-                            <div className="form-control w-full max-w-xs">
-                                <label className="label">
-                                    <span className="label-text">Name</span>
-                                </label>
-                                <input {...register("name")} type="text" className="input input-bordered w-full max-w-xs" />
-                            </div>
+            <div className="h-[800px] flex justify-center items-center bg-slate-100">
 
-                            <div className="form-control w-full max-w-xs">
-                                <label className="label">
-                                    <span className="label-text">Email</span>
-                                </label>
-                                <input {...register("email", {
-                                    required: "Email is required"
-                                })} type="email" className="input input-bordered w-full max-w-xs" />
-                                {errors.email && <p className='text-red-500'>{errors.email?.message}</p>}
-                            </div>
+                <div className="px-7 py-7 w-96 rounded-2xl shadow-xl bg-white">
 
-                            <div className="form-control w-full max-w-xs">
-                                <label className="label">
-                                    <span className="label-text">Password</span>
-                                </label>
-                                <input {...register("password", {
-                                    required: "passward is required", // asdAE32#
-                                    minLength: { value: 6, message: 'passward must be in 6 characters', },
-                                    pattern: { value: /(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})/, message: 'Password must be strong' }
-                                })} type="password" className="input input-bordered w-full max-w-xs" />
-                                {errors.password && <p className='text-red-500'>{errors.password?.message}</p>}
-                            </div>
+                    <h2 className='font-bold text-center text-3xl'>Register</h2>
 
+                    <form onSubmit={handleSubmit(handleSignup)}>
 
-                            <div className="form-control w-full max-w-xs">
-                                <label className="label">
-                                    <span className="label-text">Role</span>
-                                </label>
-
-                                <select {...register("role", { required: "role is required" })} className="select select-bordered">
-                                    {
-                                        roles.map(role => <option
-                                            key={role.id}
-                                            value={role.name}
-                                            defaultValue={roles[0].name}
-                                        >{role.name}</option>)
-                                    }
-
-                                </select>
-                            </div>
-
-                            {
-                                signupError && <p className='text-red-600'>{signupError}</p>
-                            }
-
-                            <div className="form-control mt-6">
-                                <button className="btn btn-primary">Login</button>
-                                <p >Already have an account? <Link className=' text-blue-500' to="/login">Login</Link></p>
-                            </div>
-
-
+                        <div className="form-control w-full ">
+                            <label className="label">
+                                <span className="label-text">Name</span>
+                            </label>
+                            <input {...register("name")} type="text" className="input input-bordered w-full " />
                         </div>
-                        <div className="divider">OR</div>
-                        <div className='px-5 pb-5 pt-0 '>
-                            <button onClick={handleGoogleSignin} className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
+
+                        <div className="form-control w-full ">
+                            <label className="label">
+                                <span className="label-text">Email</span>
+                            </label>
+                            <input {...register("email", {
+                                required: "Email is required"
+                            })} type="email" className="input input-bordered w-full " />
+                            {errors.email && <p className='text-red-500'>{errors.email?.message}</p>}
+                        </div>
+
+                       
+
+                        <div className="form-control w-full ">
+                            <label className="label">
+                                <span className="label-text">Password</span>
+                            </label>
+                            <input {...register("password", {
+                                required: "passward is required", // asdAE32#
+                                minLength: { value: 6, message: 'passward must be in 6 characters', },
+                                pattern: { value: /(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})/, message: 'Password must be strong' }
+                            })} type="password" className="input input-bordered w-full " />
+                            {errors.password && <p className='text-red-500'>{errors.password?.message}</p>}
+                        </div>
+
+
+                        <div className="form-control w-full ">
+                            <label className="label">
+                                <span className="label-text">Role</span>
+                            </label>
+
+                            <select {...register("role", { required: "role is required" })} className="select select-bordered">
+                                {
+                                    roles.map(role => <option
+                                        key={role.id}
+                                        value={role.name}
+                                        defaultValue={roles[0].name}
+                                    >{role.name}</option>)
+                                }
+
+                            </select>
+                        </div>
+
+                        {
+                            signupError && <p className='text-red-600'>{signupError}</p>
+                        }
+
+                        <div className="form-control mt-6">
+                            <button className="btn btn-neutral text-white">Signup</button>
+                            <p >Already have an account? <Link className=' text-blue-500' to="/login">Login</Link></p>
                         </div>
                     </form>
+
+                    <div className="divider">OR</div>
+
+                    <div >
+                        <button onClick={handleGoogleSignin} className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
+                    </div>
                 </div>
             </div>
 

@@ -1,4 +1,5 @@
 import DashboardLayout from "../../Layouts/DashboardLayout/DashboardLayout";
+import About from "../../pages/About/About";
 import Blogs from "../../pages/Blogs/Blogs";
 import AddPrducts from "../../pages/DashBoard/AddPrducts/AddPrducts";
 import AllBuyers from "../../pages/DashBoard/AllBuyers/AllBuyers";
@@ -31,6 +32,11 @@ const router = createBrowserRouter([
                 path: '/',
                 element: <Home></Home>
             }, 
+
+            {
+                path: '/home',
+                element: <Home></Home>
+            },
             {
                 path: '/category/:Category_name',
                 loader:({params})=>fetch(`https://musicly-server-kjmtmdl3u-anukulghoshdev.vercel.app/category/${params.Category_name}`),
@@ -47,6 +53,10 @@ const router = createBrowserRouter([
             {
                 path: '/blogs',
                 element: <Blogs></Blogs>
+            },
+            {
+                path: '/about',
+                element: <About/>
             }
 
         ]
@@ -58,7 +68,7 @@ const router = createBrowserRouter([
         children:[
             {
                 path: '/dashboard',
-                element: <DashboardWelcomePage></DashboardWelcomePage>
+                element: <PrivateRoute><DashboardWelcomePage></DashboardWelcomePage></PrivateRoute>
             },
             {
                 path:'/dashboard/myorders',

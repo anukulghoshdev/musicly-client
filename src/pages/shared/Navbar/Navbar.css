@@ -1,0 +1,23 @@
+.title h3{
+    letter-spacing: 0.8rem
+}
+
+.nav-items ul li {
+    margin-left: 3rem;
+    transition: 0.5s ease-in-out;
+}
+.nav-items ul li:hover{
+    color: rgb(0, 0, 0);
+    font-size: medium;
+    font-weight: 500;
+
+}
+/* .nav-items ul li:hover::after{
+    content: "";
+    width: 40%;
+    height: 2px;
+    background: black;
+    position: absolute;
+    bottom: -4px;
+    left: 20px;
+} */

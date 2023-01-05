@@ -9,7 +9,6 @@ const useToken = (email) => {
                 if (data.accessToken) {
                     localStorage.setItem('musiclyToken', data.accessToken)
                     setToken(data.accessToken)
-                    
                 }
             });
     }, [email]);
