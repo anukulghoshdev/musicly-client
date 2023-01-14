@@ -7,7 +7,7 @@ import Loader from '../../shared/Loader/Loader';
 const MyOrders = () => {
     const { user } = useContext(AuthContext);
 
-    const url = `https://musicly-server-kjmtmdl3u-anukulghoshdev.vercel.app/mybookingorders?email=${user?.email}`;
+    const url = `https://musicly-server-anukulghoshdev.vercel.app/mybookingorders?email=${user?.email}`;
 
     const { data: orders = [], isLoading } = useQuery({
         queryKey: ['mybookingorders', user?.email],
@@ -21,6 +21,22 @@ const MyOrders = () => {
             return data;
         }
     })
+
+
+    // const url = `https://doctors-portal-server-two-fawn.vercel.app/bookings?email=${user?.email}`;
+
+    // const { data: bookings = [], isLoading } = useQuery({
+    //     queryKey: ['bookings', user?.email],
+    //     queryFn: async () => {
+    //         const res = await fetch(url, {
+    //             headers: {
+    //                 authorization: `bearer ${localStorage.getItem('doctor_portal_JWT')}`
+    //             }
+    //         })
+    //         const data = await res.json();
+    //         return data;
+    //     }
+    // })
 
     if (isLoading) {
         return <Loader></Loader>

@@ -11,7 +11,7 @@ const AllUsers = () => {
         setDeletedUser(null)
     }
     const handleDeleteUser = user => {
-        fetch(`https://musicly-server-kjmtmdl3u-anukulghoshdev.vercel.app/user/${user._id}`, {
+        fetch(`https://musicly-server-anukulghoshdev.vercel.app/user/${user._id}`, {
             method: 'DELETE',
             authorization: `bearer ${localStorage.getItem('musiclyToken')}`
         })
@@ -26,7 +26,7 @@ const AllUsers = () => {
 
     return (
         <div>
-            <h2 className='text-6xl'>All Users</h2>
+            <h2 className='text-3xl text-center mt-5'>All Users</h2>
             <AllBuyers
                 setDeletedUser={setDeletedUser}
             />

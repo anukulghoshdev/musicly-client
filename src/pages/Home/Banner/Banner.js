@@ -14,14 +14,28 @@ import { Autoplay, Pagination, Navigation  } from "swiper";
 import './Banner.css'
 
 
-import img1 from '../../../assests/images/banner-imgs/img1.jpg'
-import img2 from '../../../assests/images/banner-imgs/img2.jpg'
-import img3 from '../../../assests/images/banner-imgs/img3.jpg'
+// import img1 from '../../../assests/images/banner-imgs/img1.jpg'
+// import img2 from '../../../assests/images/banner-imgs/img2.jpg'
+
+// import img3 from '../../../assests/images/banner-imgs/1.jpg.jpg'
+
+import img1 from '../../../assests/images/banner-imgs/1.jpg'
+import img2 from '../../../assests/images/banner-imgs/2.jpg'
+import img3 from '../../../assests/images/banner-imgs/7.jpg'
+import img4 from '../../../assests/images/banner-imgs/9.jpg'
+
+
+// import img7 from '../../../assests/images/banner-imgs/5.jpg.jpg'
+// import img8 from '../../../assests/images/banner-imgs/6.jpg.jpg'
+// import img9 from '../../../assests/images/banner-imgs/7.jpg.jpg'
+// import img10 from '../../../assests/images/banner-imgs/8.jpg.jpg'
+
 // import BannerItem from './BannerItem';
 
 const Banner = () => {
 
     const bannerImageSlides = [
+
         {
             image: img1,
             id: 1,
@@ -31,10 +45,10 @@ const Banner = () => {
             next: 2
         },
         {
-            image: img2,
+            image: img4,
             id: 2,
             text: 'Exciting Guitar Pack',
-            des: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste, corporis temporibus? Nemo necessitatibus at ibus esse assumenda numquam earum harum nisi!",
+            des: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste, corporis temporibus? Nemo necessitatibus at earum harum nisi!",
             prev: 1,
             next: 3
         },
@@ -42,7 +56,7 @@ const Banner = () => {
             image: img3,
             id: 3,
             text: 'New Jersey Guiter',
-            des: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste, corporis temporibus? Nemo necessitatibus at quibusdam, itaque, velit ipsam",
+            des: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iste, Nemo necessitatibus at quibusdam, itaque, velit ipsam",
             prev: 2,
             next: 1
         }
@@ -72,7 +86,7 @@ const Banner = () => {
                     clickable: true,
                 }}
                 autoplay={{
-                    delay: 4000,
+                    delay: 5000,
                     disableOnInteraction: false,
                 }}
                 modules={[Autoplay, Pagination, Navigation]}
@@ -84,8 +98,10 @@ const Banner = () => {
 
                             <div className='relative w-full h-[800px] bg-gradient-to-t from-black'>
                                 <img src={slide.image} alt="" className='w-full h-full object-cover mix-blend-overlay' />
+                                {/* <div className="hero-overlay bg-black bg-opacity-50"></div> */}
+                                <div className='absolute top-0 left-0 right-0 bottom-0 bg-black/40 z-[2]' />
 
-                                <div className='absolute top-[50%] left-[50%] -translate-x-2/4 -translate-y-2/4 space-y-6 text-center '>
+                                <div className='absolute top-[50%] left-[50%] -translate-x-2/4 -translate-y-2/4 space-y-6 text-center z-10'>
                                     <h1 className='text-5xl md:text-6xl lg:text-7xl font-semibold text-white  mb-0'>{slide.text}</h1>
 
                                     <div className='w-full text-center hidden md:block'>

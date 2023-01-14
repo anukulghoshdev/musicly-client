@@ -28,7 +28,7 @@ const BuyingModal = ({ sell_product, setSell_product }) => {
             meeting_location,
 
         }
-        fetch('https://musicly-server-kjmtmdl3u-anukulghoshdev.vercel.app/bookingProducts',{
+        fetch('https://musicly-server-anukulghoshdev.vercel.app/bookingProducts',{
             method: 'POST',
             headers: {
                 "content-type": "application/json"

@@ -70,7 +70,7 @@ const Register = () => {
     const saveUserToDbForGoogle = (user) => {
         console.log(user);
 
-        fetch(`https://musicly-server-kjmtmdl3u-anukulghoshdev.vercel.app/googleusers?email=${user.email}`, {
+        fetch(`https://musicly-server-anukulghoshdev.vercel.app/googleusers?email=${user.email}`, {
             method: 'PUT',
             headers: {
                 "content-type": "application/json"
@@ -89,7 +89,7 @@ const Register = () => {
     const saveUserToDb = (name, email, role) => {
         // console.log("from saveUserDb function",name, email, role);
         const user = { name, email, role };
-        fetch('https://musicly-server-kjmtmdl3u-anukulghoshdev.vercel.app/users', {
+        fetch('https://musicly-server-anukulghoshdev.vercel.app/users', {
             method: 'POST',
             headers: {
                 "content-type": "application/json"
@@ -100,11 +100,14 @@ const Register = () => {
             .then(data => {
                 // getUserToken(email);
                 setCreatedUserEmail(email)
+                if(data.acknowledged === true){
+                    setCreatedUserEmail(email)
+                }
             })
 
 
         // const getUserToken = email => {
-        //     fetch(`https://musicly-server-kjmtmdl3u-anukulghoshdev.vercel.app/jwt?email=${email}`)
+        //     fetch(`https://musicly-server-anukulghoshdev.vercel.app/jwt?email=${email}`)
         //         .then(res => res.json())
         //         .then(data => {
         //             if(data.accessToken){

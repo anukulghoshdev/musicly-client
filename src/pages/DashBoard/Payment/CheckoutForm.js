@@ -20,7 +20,7 @@ const CheckoutForm = ({ order }) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("https://musicly-server-kjmtmdl3u-anukulghoshdev.vercel.app/create-payment-intent", {
+        fetch("https://musicly-server-anukulghoshdev.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -93,7 +93,7 @@ const CheckoutForm = ({ order }) => {
                 bookingId: _id
 
             }
-            fetch('https://musicly-server-kjmtmdl3u-anukulghoshdev.vercel.app/payments', {
+            fetch('https://musicly-server-anukulghoshdev.vercel.app/payments', {
                 method: 'POST',
                 headers: {
                     "content-type": "application/json",

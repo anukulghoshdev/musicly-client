@@ -30,10 +30,9 @@ const Login = () => {
         loginUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
-                // console.log(user);
-                navigate(from, { replace: true });
                 toast.success('login successfull');
                 setLoginUserEmail(data.email)
+                
             })
             .catch(error => {
                 console.log(error.message);
@@ -63,7 +62,7 @@ const Login = () => {
 
     return (
 
-        <div className='h-[800px] flex justify-center items-center bg-slate-100'>
+        <div className='h-[800px] flex justify-center items-center '>
             <div className='p-8 w-96 rounded-2xl shadow-xl bg-white'>
                 <h2 className='font-bold text-center text-3xl'>Login</h2>
 

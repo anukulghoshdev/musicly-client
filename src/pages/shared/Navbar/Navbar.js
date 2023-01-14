@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider';
 // import {icon} from '../../../../src/assests/musicly-fav.png'
 import icon from '../../../assests/musicly-fav.png'
@@ -24,6 +24,7 @@ const Navbar = () => {
     const { user, logout } = useContext(AuthContext);
     const navigate = useNavigate()
 
+    const { pathname } = useLocation()
 
     const handleLogout = () => {
         logout()
@@ -36,10 +37,10 @@ const Navbar = () => {
 
 
     const menuItems = <React.Fragment>
-        <li className='font-semibold'><NavLink className={({isActive})=> isActive? 'text-violet-600': 'text-black'} to='/home'>Home</NavLink></li>
-        <li className='font-semibold'><NavLink className={({isActive})=> isActive? 'text-violet-600': 'text-black'}  to='/dashboard'>Dashboard</NavLink></li>
-        <li className='font-semibold'><NavLink className={({isActive})=> isActive? 'text-violet-600': 'text-black'}  to='/blogs'>Blogs</NavLink></li>
-        <li className='font-semibold'><NavLink className={({isActive})=> isActive? 'text-violet-600': 'text-black'} to='/about'>About Us</NavLink></li>
+        <li className='font-semibold'><NavLink className={({ isActive }) => isActive ? 'text-violet-600' : 'text-black'} to='/home'>Home</NavLink></li>
+        <li className='font-semibold'><NavLink className={({ isActive }) => isActive ? 'text-violet-600' : 'text-black'} to='/dashboard'>Dashboard</NavLink></li>
+        <li className='font-semibold'><NavLink className={({ isActive }) => isActive ? 'text-violet-600' : 'text-black'} to='/blogs'>Blogs</NavLink></li>
+        <li className='font-semibold'><NavLink className={({ isActive }) => isActive ? 'text-violet-600' : 'text-black'} to='/about'>About Us</NavLink></li>
     </React.Fragment>
 
 
@@ -98,12 +99,13 @@ const Navbar = () => {
                         }
                     </ul>
 
-                    <label htmlFor="dashboard-drawer" tabIndex={2} className="btn btn-ghost lg:hidden">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-                        </svg>
-                    </label>
+
                 </div>
+                <label htmlFor="dashboard-drawer" tabIndex={2} className="btn btn-ghost hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                    </svg>
+                </label>
             </div>
         </div>
     );

@@ -39,8 +39,8 @@ const router = createBrowserRouter([
             },
             {
                 path: '/category/:Category_name',
-                loader:({params})=>fetch(`https://musicly-server-kjmtmdl3u-anukulghoshdev.vercel.app/category/${params.Category_name}`),
-                element: <PrivateRoute><Products></Products></PrivateRoute>
+                loader:({params})=>fetch(`https://musicly-server-anukulghoshdev.vercel.app/category/${params.Category_name}`),
+                element: <Products></Products>
             }, 
             {
                 path: '/login', 
@@ -101,7 +101,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <Payment></Payment>,
-                loader: ({params})=>fetch(`https://musicly-server-kjmtmdl3u-anukulghoshdev.vercel.app/orders/${params.id}`)
+                loader: ({params})=>fetch(`https://musicly-server-anukulghoshdev.vercel.app/orders/${params.id}`)
             }
         ]
     }

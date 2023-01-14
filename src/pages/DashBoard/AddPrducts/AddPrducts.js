@@ -16,8 +16,9 @@ const AddPrducts = () => {
 
     const posted_time = new Date();
 
-    const imgHostKey = process.env.REACT_APP_img_bb_host_api;
 
+    const imgHostKey = process.env.REACT_APP_imgbb_key;
+    console.log(imgHostKey)
 
 
 
@@ -42,7 +43,8 @@ const AddPrducts = () => {
         const image = data.image[0];
         const formData = new FormData();
         formData.append('image', image);
-        const url = `https://api.imgbb.com/1/upload?expiration=12000&key=${imgHostKey}`
+        const url = `https://api.imgbb.com/1/upload?key=${imgHostKey}`
+  
         fetch(url, {
             method: 'POST',
             body: formData
@@ -67,7 +69,7 @@ const AddPrducts = () => {
 
                     }
                     // save product to db
-                    fetch("https://musicly-server-kjmtmdl3u-anukulghoshdev.vercel.app/addproducts", {
+                    fetch("https://musicly-server-anukulghoshdev.vercel.app/addproducts", {
                         method: 'POST',
                         headers: {
                             "content-type": "application/json",
@@ -82,7 +84,6 @@ const AddPrducts = () => {
                                 toast.success('product added successfully')
                                 navigate('/dashboard/myproducts')
                                 
-
                             }
                         })
                 }
@@ -92,7 +93,7 @@ const AddPrducts = () => {
     const { data: categories = [], isLoading } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
-            const res = await fetch("https://musicly-server-kjmtmdl3u-anukulghoshdev.vercel.app/productCategories")
+            const res = await fetch("https://musicly-server-anukulghoshdev.vercel.app/productCategories")
             const data = await res.json()
             return data;
         }
